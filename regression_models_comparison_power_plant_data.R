@@ -21,6 +21,12 @@ summary(lin_reg)
 # Adjusted R-squared for multiple linear regression:  0.9287
 
 # polynomial regression
+dataset = read.csv('Data.csv')
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$PE, SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
 
 dataset$AT2 = dataset$AT^2
 dataset$V2 = dataset$V^2
@@ -34,15 +40,28 @@ dataset$RH3 = dataset$RH^3
 
 poly_reg = lm(formula = PE ~ .,
               data = dataset)
+y_pred = predict(object = poly_reg, newdata = test_set)
 summary(poly_reg)
 
 # Adjusted R-squared for multiple linear regression:  0.9382
 
 # SVR
+
+dataset = read.csv('Data.csv')
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$PE, SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
+
 # install.packages('e1071')
 library(e1071)
-
-
+svr = svm(formula = PE ~ ., 
+          data = dataset,
+          type = 'eps-regression',
+          kernel = 'radial')
+y_pred = predict(object = svr, newdata = test_set)
+summary(svr)
 
 
 
