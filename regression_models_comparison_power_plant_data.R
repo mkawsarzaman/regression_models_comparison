@@ -18,4 +18,16 @@ summary(lin_reg)
 
 # Adjusted R-squared for multiple linear regression:  0.9287
 
-poly_reg = lm()
+dataset$AT2 = dataset$AT^2
+dataset$V2 = dataset$V^2
+dataset$AP2 = dataset$AP^2
+dataset$RH2 = dataset$RH^2
+
+dataset$AT3 = dataset$AT^3
+dataset$V3 = dataset$V^3
+dataset$AP3 = dataset$AP^3
+dataset$RH3 = dataset$RH^3
+
+poly_reg = lm(formula = PE ~ .,
+              data = dataset)
+summary(poly_reg)
