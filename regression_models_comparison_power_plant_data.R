@@ -11,12 +11,16 @@ split = sample.split(dataset$PE, SplitRatio = 0.8)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
+#multiple linear regression
+
 lin_reg = lm(formula = PE ~ .,
              data = dataset)
 y_pred = predict(object = lin_reg, newdata = test_set)
 summary(lin_reg)
 
 # Adjusted R-squared for multiple linear regression:  0.9287
+
+# polynomial regression
 
 dataset$AT2 = dataset$AT^2
 dataset$V2 = dataset$V^2
@@ -33,3 +37,16 @@ poly_reg = lm(formula = PE ~ .,
 summary(poly_reg)
 
 # Adjusted R-squared for multiple linear regression:  0.9382
+
+# SVR
+# install.packages('e1071')
+library(e1071)
+
+
+
+
+
+
+
+
+
