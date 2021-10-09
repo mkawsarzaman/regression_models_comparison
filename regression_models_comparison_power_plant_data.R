@@ -64,7 +64,22 @@ y_pred = predict(object = svr, newdata = test_set)
 summary(svr)
 
 
+# Decision tree regression
+dataset = read.csv('Data.csv')
+library(caTools)
+set.seed(123)
+split = sample.split(dataset$PE, SplitRatio = 0.8)
+training_set = subset(dataset, split == TRUE)
+test_set = subset(dataset, split == FALSE)
 
+#install.packages('rpart')
+library(rpart)
+
+dt_regressor = rpart(formula = PE ~ .,
+                  data = dataset,
+                  control = rpart.control(minsplit = 1))
+y_pred = predict(object = dt_regressor, newdata = test_set)
+summary(dt_regressor)
 
 
 
