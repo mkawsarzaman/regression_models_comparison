@@ -31,3 +31,5 @@ dataset$RH3 = dataset$RH^3
 poly_reg = lm(formula = PE ~ .,
               data = dataset)
 summary(poly_reg)
+
+# Adjusted R-squared for multiple linear regression:  0.9382
