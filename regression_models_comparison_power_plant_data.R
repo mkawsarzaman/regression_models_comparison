@@ -15,3 +15,7 @@ lin_reg = lm(formula = PE ~ .,
              data = dataset)
 y_pred = predict(object = lin_reg, newdata = test_set)
 summary(lin_reg)
+
+# Adjusted R-squared for multiple linear regression:  0.9287
+
+poly_reg = lm()
